@@ -33,7 +33,7 @@ class Ground(pygame.sprite.Sprite):
         
     def move(self):
         #moving ground
-        self.rect.rectx -= scroll_speed
+        self.rect.x -= scroll_speed
         if self.rect.x <= win_width:
             self.kill()
             
@@ -61,6 +61,12 @@ def main():
         
         # draw background
         window.blit(bg_img, (0, 0))
+        
+        # draw ground, pipes, and bird
+        ground.draw(window)
+        
+        # move ground, pipes, and bird
+        ground.update()
         
         timer.tick(60)
         pygame.display.update()

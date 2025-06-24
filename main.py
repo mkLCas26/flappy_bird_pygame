@@ -102,6 +102,10 @@ def main():
     bird = pygame.sprite.GroupSingle()
     bird.add(Bird())
     
+    # setup pipes
+    pipe_timer = 0
+    pipes = pygame.sprite.Group()
+
     # initialize first ground img
     groundx_pos, groundy_pos = 0, 520
     ground = pygame.sprite.Group()
@@ -125,13 +129,23 @@ def main():
         if len(ground) <= 2:
             ground.add(Ground(groundx_pos, groundy_pos))
         
+        # spawn pipe
+        if pipe_timer <= 0:
+            x_top, x_bottom = 550, 550
+            y_top = random.randint(-600, -480)
+            y_bottom = y_top + random.randint(98,130) + bot_pipe_img.get_height()
+            pipes.add(Pipe(x_top, y_top, top_pipe_img))
+            pipe_timer = random.randint(180, 250)
+        pipe_timer -= 1  
         
         # draw ground, pipes, and bird
         ground.draw(window)
+        pipes.draw(window)
         bird.draw(window)
         
         # move ground, pipes, and bird
         ground.update()
+        pipes.update()
         bird.update(user_input)
         
         timer.tick(60)

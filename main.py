@@ -48,6 +48,11 @@ def quit_game():
 
 # run game
 def main():
+    # initialize first ground img
+    groundx_pos, groundy_pos = 0, 520
+    ground = pygame.sprite.Group()
+    ground.add(Ground(groundx_pos, groundy_pos))
+    
     run = True
     while run:
         quit_game()

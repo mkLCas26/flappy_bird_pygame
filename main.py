@@ -21,6 +21,24 @@ bot_pipe_img = pygame.image.load("assets/pipe_bottom.png")
 start_img = pygame.image.load("assets/start.png")
 game_over_img = pygame.image.load("assets/game_over.png")
 
+# for game
+scroll_speed = 1
+
+class Ground(pygame.sprite.Sprite):
+    def __init__(self, groundx, groundy):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = ground_img
+        self.rect = self.image.get_rect()
+        self.rect.x, self.rect.y = groundx, groundy
+        
+    def move(self):
+        #moving ground
+        self.rect.rectx -= scroll_speed
+        if self.rect.x <= win_width:
+            self.kill()
+            
+        
+
 # exit the game
 def quit_game():
     for event in pygame.event.get():
@@ -35,6 +53,9 @@ def main():
         quit_game()
         
         window.fill((0, 0, 0))
+        
+        # draw background
+        window.blit(bg_img, (0, 0))
         
         timer.tick(60)
         pygame.display.update()

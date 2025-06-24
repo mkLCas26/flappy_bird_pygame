@@ -60,6 +60,19 @@ class Bird(pygame.sprite.Sprite):
             self.flap = True
             self.vel = -7
 
+class Pipe(pygame.sprite.Sprite):
+    def __init__(self, pipex, pipey, image):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.rect.x, self.rect.y = pipex, pipey
+        
+    def update(self):
+        # move pipe
+        self.rect.x -= scroll_speed
+        if self.rect.x <= -win_width:
+            self.kill()
+        
 
 class Ground(pygame.sprite.Sprite):
     def __init__(self, groundx, groundy):
@@ -71,7 +84,7 @@ class Ground(pygame.sprite.Sprite):
     def update(self):
         #moving ground
         self.rect.x -= scroll_speed
-        if self.rect.x <= win_width:
+        if self.rect.x <= -win_width:
             self.kill()
             
         

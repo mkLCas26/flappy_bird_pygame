@@ -23,6 +23,19 @@ game_over_img = pygame.image.load("assets/game_over.png")
 
 # for game
 scroll_speed = 1
+bird_start_pos = (100, 250)
+
+class Bird(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = bird_imgs[0]
+        self.rect = self.image.get_rect()
+        self.rect.center = bird_start_pos
+        self.image_index = 0
+        
+    def update(self):
+        
+
 
 class Ground(pygame.sprite.Sprite):
     def __init__(self, groundx, groundy):
@@ -31,7 +44,7 @@ class Ground(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = groundx, groundy
         
-    def move(self):
+    def update(self):
         #moving ground
         self.rect.x -= scroll_speed
         if self.rect.x <= win_width:

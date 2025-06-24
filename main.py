@@ -5,16 +5,19 @@ from sys import exit
 pygame.init()
 timer = pygame.time.Clock()
 
+# window display
 win_height = 720
 win_width = 551
 window = pygame.display.set_mode((win_width, win_height))
 
+# exit the game
 def quit_game():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
 
+# run game
 def main():
     run = True
     while run:

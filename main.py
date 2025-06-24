@@ -62,6 +62,11 @@ def main():
         # draw background
         window.blit(bg_img, (0, 0))
         
+        # spawn ground
+        if len(ground) <= 2:
+            ground.add(Ground(groundx_pos, groundy_pos))
+        
+        
         # draw ground, pipes, and bird
         ground.draw(window)
         

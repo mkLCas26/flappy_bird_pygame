@@ -34,7 +34,11 @@ class Bird(pygame.sprite.Sprite):
         self.image_index = 0
         
     def update(self):
-        
+        # animate bird
+        self.image_index += 1
+        if self.image_index >= 30:
+            self.image_index = 0
+        self.image = bird_imgs[self.image_index // 10]
 
 
 class Ground(pygame.sprite.Sprite):
@@ -61,6 +65,10 @@ def quit_game():
 
 # run game
 def main():
+    # initialize bird
+    bird = pygame.sprite.GroupSingle()
+    bird.add(Bird())
+    
     # initialize first ground img
     groundx_pos, groundy_pos = 0, 520
     ground = pygame.sprite.Group()
@@ -82,9 +90,11 @@ def main():
         
         # draw ground, pipes, and bird
         ground.draw(window)
+        bird.draw(window)
         
         # move ground, pipes, and bird
         ground.update()
+        bird.update()
         
         timer.tick(60)
         pygame.display.update()

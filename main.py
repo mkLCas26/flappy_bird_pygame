@@ -23,7 +23,7 @@ def main():
     while run:
         quit_game()
         
-        window.fill (0, 0, 0)
+        window.fill((0, 0, 0))
         
         timer.tick(60)
         pygame.display.update()

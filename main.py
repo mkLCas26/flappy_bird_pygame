@@ -1,6 +1,7 @@
 # import libraries and other necessities
 import pygame
 from sys import exit
+import random
 
 pygame.init()
 timer = pygame.time.Clock()
@@ -50,6 +51,9 @@ class Bird(pygame.sprite.Sprite):
             self.rect.y += int(self.vel)
         if self.vel == 0:
             self.flap = False
+            
+        # rotate bird in movement
+        self.image = pygame.transform.rotate(self.image, self.vel * -7)
         
         # user input = spacebar
         if user_input[pygame.K_SPACE] and not self.flap and self.rect.y > 0:

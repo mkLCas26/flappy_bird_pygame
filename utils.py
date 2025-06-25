@@ -3,6 +3,7 @@ import pygame
 # window display
 win_height = 720
 win_width = 551
+window = pygame.display.set_mode((win_width, win_height))
 
 # game variables
 scroll_speed = 1

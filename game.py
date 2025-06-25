@@ -104,7 +104,7 @@ class Game:
         
     def menu(self):
         while self.game_stopped:
-            quit_game()
+            self.quit_game()
         
             # draw menu 
             self.window.fill((0, 0, 0))

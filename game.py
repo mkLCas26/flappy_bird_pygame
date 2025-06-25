@@ -102,6 +102,28 @@ class Game:
         self.timer.tick(60)
         pygame.display.update()
         
+    def menu(self):
+        while self.game_stopped:
+            quit_game()
+        
+            # draw menu 
+            self.window.fill((0, 0, 0))
+            self.window.blit(bg_img, (0, 0))
+            self.window.blit(ground_img, Ground(0, 520))
+            self.window.blit(bird_imgs[0], (100, 250))
+            self.window.blit( start_img, (
+                win_width // 2 - game_over_img.get_width() // 2,
+                win_height // 2 - game_over_img.get_height() // 2
+                ))
+        
+            # user input
+            user_input = pygame.key.get_pressed()
+            if user_input[pygame.K_SPACE]:
+                self.game_stopped = False
+                self.run()
+        
+            pygame.display.update()
+        
         
         
         

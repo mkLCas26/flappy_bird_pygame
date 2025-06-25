@@ -9,11 +9,11 @@ from ground import Ground
 
 class Game:
     def __init__(self):
-        score = 0
-        game_stopped = True
+        self.score = 0
+        self.game_stopped = True
         self.window = window 
-        timer = pygame.time.Clock()
-        font = pygame.font.SysFont("Segoe", 26)
+        self.timer = pygame.time.Clock()
+        self.font = pygame.font.SysFont("Segoe", 26)
         
     def quit_game(self):
         # exit the game

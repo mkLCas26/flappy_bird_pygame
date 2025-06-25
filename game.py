@@ -98,6 +98,12 @@ class Game:
             if bird.sprite.alive:
                 ground.update()
                 pipes.update()
+                
+                for pipe in pipes:
+                    if pipe.pipe_type == "bottom":
+                        self.score += pipe.score
+                        pipe.score = 0
+                
             bird.update(user_input)
         
             self.timer.tick(60)

@@ -162,10 +162,6 @@ def main():
             pipe_timer = random.randint(180, 250)
         pipe_timer -= 1  
         
-        # show score
-        score_text = font.render("Score: " + str(score), True, pygame.Color(255, 255, 255))
-        window.blit(score_text, (20, 20))
-        
         # collision detection
         collision_pipes = pygame.sprite.spritecollide(bird.sprites()[0], pipes, False)
         collision_ground = pygame.sprite.spritecollide(bird.sprites()[0], ground, False)
@@ -184,6 +180,10 @@ def main():
         pipes.draw(window)
         ground.draw(window)
         bird.draw(window)
+
+        # show score
+        score_text = font.render("Score: " + str(score), True, pygame.Color(255, 255, 255))
+        window.blit(score_text, (20, 20))
         
         # update ground, pipes, and bird
         if bird.sprite.alive:

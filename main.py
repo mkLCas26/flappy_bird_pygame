@@ -208,3 +208,12 @@ def menu():
                 win_width // 2 - game_over_img.get_width() // 2,
                 win_height // 2 - game_over_img.get_height() // 2
                 ))
+        
+        # user input
+        user_input = pygame.key.get_pressed()
+        if user_input[pygame.K_SPACE]:
+            main()
+        
+        pygame.display.update()
+        
+menu()

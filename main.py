@@ -163,6 +163,21 @@ def main():
         score_text = font.render("Score: " + str(score), True, pygame.Color(255, 255, 255))
         window.blit(score_text, (20, 20))
         
+        # collision detection
+        collision_pipes = pygame.sprite.spritecollide(bird.sprites()[0], pipes, False)
+        collision_ground = pygame.sprite.spritecollide(bird.sprites()[0], ground, False)
+        if collision_pipes or collision_ground:
+            bird.sprite.alive = False
+            if collision_ground:
+                window.blit(game_over_img, (
+                    win_width // 2 - game_over_img.get_width() // 2,
+                    win_height // 2 - game_over_img.get_height() // 2
+                    ))
+                if user_input[pygame.K_r]:
+                    score = 0
+                    main()
+                    break
+        
         # draw ground, pipes, and bird
         ground.draw(window)
         pipes.draw(window)

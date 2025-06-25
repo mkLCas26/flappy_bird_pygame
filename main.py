@@ -135,6 +135,7 @@ def main():
             y_top = random.randint(-600, -480)
             y_bottom = y_top + random.randint(98,130) + bot_pipe_img.get_height()
             pipes.add(Pipe(x_top, y_top, top_pipe_img))
+            pipes.add(Pipe(x_bottom, y_bottom, bot_pipe_img))
             pipe_timer = random.randint(180, 250)
         pipe_timer -= 1  
         

@@ -10,6 +10,8 @@ class Pipe(pygame.sprite.Sprite):
         self.rect.x, self.rect.y = pipex, pipey
         self.enter, self.exit, self.passed = False, False, False
         self.pipe_type = pipe_type
+        self.score = 0
+        self.passed = False
         
     def update(self):
         # move pipe
@@ -18,7 +20,6 @@ class Pipe(pygame.sprite.Sprite):
             self.kill()
             
         # scoring
-        global score
         if self.pipe_type == "bottom":
             if bird_start_pos[0] > self.rect.topleft[0] and not self.passed:
                self.enter = True
@@ -26,4 +27,4 @@ class Pipe(pygame.sprite.Sprite):
                 self.exit = True
             if self.enter and self.exit and not self.passed:
                 self.passed = True
-                score += 1
+                self.score += 1

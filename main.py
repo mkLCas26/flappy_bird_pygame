@@ -116,6 +116,8 @@ def quit_game():
 
 # run game
 def main():
+    global score
+    
     # initialize bird
     bird = pygame.sprite.GroupSingle()
     bird.add(Bird())
@@ -148,23 +150,28 @@ def main():
             ground.add(Ground(groundx_pos, groundy_pos))
         
         # spawn pipe
-        if pipe_timer <= 0:
+        if pipe_timer <= 0 and bird.sprite.alive:
             x_top, x_bottom = 550, 550
             y_top = random.randint(-600, -480)
             y_bottom = y_top + random.randint(98,130) + bot_pipe_img.get_height()
-            pipes.add(Pipe(x_top, y_top, top_pipe_img))
-            pipes.add(Pipe(x_bottom, y_bottom, bot_pipe_img))
+            pipes.add(Pipe(x_top, y_top, top_pipe_img, "top"))
+            pipes.add(Pipe(x_bottom, y_bottom, bot_pipe_img, "bottom"))
             pipe_timer = random.randint(180, 250)
         pipe_timer -= 1  
+        
+        # show score
+        score_text = font.render(f"Score: {str(score), True, pygame.Color(255, 255, 255)}")
+        window.blit(score_text, (20, 20))
         
         # draw ground, pipes, and bird
         ground.draw(window)
         pipes.draw(window)
         bird.draw(window)
         
-        # move ground, pipes, and bird
-        ground.update()
-        pipes.update()
+        # update ground, pipes, and bird
+        if bird.sprite.alive:
+            ground.update()
+            pipes.update()
         bird.update(user_input)
         
         timer.tick(60)

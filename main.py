@@ -78,7 +78,19 @@ class Pipe(pygame.sprite.Sprite):
         self.rect.x -= scroll_speed
         if self.rect.x <= -win_width:
             self.kill()
-        
+            
+        # scoring
+        global score
+        if self.pipe_type == "bottom":
+            if bird_start_pos[0] > self.rect.topleft[0] and not self.passed:
+               self.enter = True
+            if bird_start_pos[0] > self.rect.topright[0] and not self.passed:
+                self.exit = True
+            if self.enter and self.exit and not self.passed:
+                self.passed = True
+                score += 1
+                
+                     
 
 class Ground(pygame.sprite.Sprite):
     def __init__(self, groundx, groundy):

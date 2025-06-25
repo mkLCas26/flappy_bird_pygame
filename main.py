@@ -181,8 +181,8 @@ def main():
                     break
         
         # draw ground, pipes, and bird
-        ground.draw(window)
         pipes.draw(window)
+        ground.draw(window)
         bird.draw(window)
         
         # update ground, pipes, and bird

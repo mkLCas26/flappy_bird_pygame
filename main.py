@@ -197,7 +197,7 @@ def menu():
     global game_stopped
     
     while game_stopped:
-        quit_game
+        quit_game()
         
         # draw menu 
         window.fill((0, 0, 0))

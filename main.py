@@ -65,11 +65,13 @@ class Bird(pygame.sprite.Sprite):
             self.vel = -7
 
 class Pipe(pygame.sprite.Sprite):
-    def __init__(self, pipex, pipey, image):
+    def __init__(self, pipex, pipey, image, pipe_type):
         pygame.sprite.Sprite.__init__(self)
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = pipex, pipey
+        self.enter, self.exit, self.passed = False, False, False
+        self.pipe_type = pipe_type
         
     def update(self):
         # move pipe

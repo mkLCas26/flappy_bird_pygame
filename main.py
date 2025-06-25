@@ -160,7 +160,7 @@ def main():
         pipe_timer -= 1  
         
         # show score
-        score_text = font.render(f"Score: {str(score), True, pygame.Color(255, 255, 255)}")
+        score_text = font.render("Score: " + str(score), True, pygame.Color(255, 255, 255))
         window.blit(score_text, (20, 20))
         
         # draw ground, pipes, and bird

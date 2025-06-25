@@ -22,9 +22,11 @@ bot_pipe_img = pygame.image.load("assets/pipe_bottom.png")
 start_img = pygame.image.load("assets/start.png")
 game_over_img = pygame.image.load("assets/game_over.png")
 
-# for game
+# for game variables
 scroll_speed = 1
 bird_start_pos = (100, 250)
+score = 0
+font = pygame.font.SysFont("Segoe", 26)
 
 class Bird(pygame.sprite.Sprite):
     def __init__(self):
@@ -35,10 +37,12 @@ class Bird(pygame.sprite.Sprite):
         self.image_index = 0
         self.vel = 0
         self.flap = False
+        self.alive = True
         
     def update(self, user_input):
         # animate bird
-        self.image_index += 1
+        if self.alive:
+            self.image_index += 1
         if self.image_index >= 30:
             self.image_index = 0
         self.image = bird_imgs[self.image_index // 10]
@@ -56,7 +60,7 @@ class Bird(pygame.sprite.Sprite):
         self.image = pygame.transform.rotate(self.image, self.vel * -7)
         
         # user input = spacebar
-        if user_input[pygame.K_SPACE] and not self.flap and self.rect.y > 0:
+        if user_input[pygame.K_SPACE] and not self.flap and self.rect.y > 0 and self.alive:
             self.flap = True
             self.vel = -7
 

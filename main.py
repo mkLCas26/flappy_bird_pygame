@@ -27,6 +27,7 @@ scroll_speed = 1
 bird_start_pos = (100, 250)
 score = 0
 font = pygame.font.SysFont("Segoe", 26)
+game_stopped = True
 
 class Bird(pygame.sprite.Sprite):
     def __init__(self):
@@ -175,7 +176,6 @@ def main():
                     ))
                 if user_input[pygame.K_r]:
                     score = 0
-                    main()
                     break
         
         # draw ground, pipes, and bird
@@ -192,6 +192,19 @@ def main():
         timer.tick(60)
         pygame.display.update()
         
-main()
+# main menu
+def menu():
+    global game_stopped
+    
+    while game_stopped:
+        quit_game
         
-        
+        # draw menu 
+        window.fill((0, 0, 0))
+        window.blit(bg_img, (0, 0))
+        window.blit(ground_img, Ground(0, 520))
+        window.blit(bird_imgs[0], (100, 250))
+        window.blit( start_img, (
+                win_width // 2 - game_over_img.get_width() // 2,
+                win_height // 2 - game_over_img.get_height() // 2
+                ))

@@ -148,7 +148,9 @@ def main():
         
         # spawn ground
         if len(ground) <= 2:
-            ground.add(Ground(groundx_pos, groundy_pos))
+            last_ground = ground.sprites()[-1]
+            new_groundx = last_ground.rect.x + ground_img.get_width()
+            ground.add(Ground(new_groundx, groundy_pos))
         
         # spawn pipe
         if pipe_timer <= 0 and bird.sprite.alive:

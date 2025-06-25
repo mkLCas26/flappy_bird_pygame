@@ -73,34 +73,35 @@ class Game:
                 if collision_ground and user_input[pygame.K_r]:
                     self.score = 0
                     self.game_stopped = True
+                    return
                     # if user_input[pygame.K_r]:
                     #     score = 0
                     # break
         
-        # draw ground, pipes, and bird
-        pipes.draw(self.window)
-        ground.draw(self.window)
-        bird.draw(self.window)
+            # draw ground, pipes, and bird
+            pipes.draw(self.window)
+            ground.draw(self.window)
+            bird.draw(self.window)
 
-        # show score
-        score_text = self.font.render("Score: " + str(self.score), True, pygame.Color(255, 255, 255))
-        self.window.blit(score_text, (20, 20))
+            # show score
+            score_text = self.font.render("Score: " + str(self.score), True, pygame.Color(255, 255, 255))
+            self.window.blit(score_text, (20, 20))
         
-        # game over
-        if not bird.sprite.alive and collision_ground:
-            self.window.blit(game_over_img, (
-                win_width // 2 - game_over_img.get_width() // 2,
-                win_height // 2 - game_over_img.get_height() // 2
-            ))
+            # game over
+            if not bird.sprite.alive and collision_ground:
+                self.window.blit(game_over_img, (
+                    win_width // 2 - game_over_img.get_width() // 2,
+                    win_height // 2 - game_over_img.get_height() // 2
+                ))
         
-        # update ground, pipes, and bird
-        if bird.sprite.alive:
-            ground.update()
-            pipes.update()
-        bird.update(user_input)
+            # update ground, pipes, and bird
+            if bird.sprite.alive:
+                ground.update()
+                pipes.update()
+            bird.update(user_input)
         
-        self.timer.tick(60)
-        pygame.display.update()
+            self.timer.tick(60)
+            pygame.display.update()
         
     def menu(self):
         while self.game_stopped:

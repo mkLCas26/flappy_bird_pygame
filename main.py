@@ -168,10 +168,10 @@ def main():
         if collision_pipes or collision_ground:
             bird.sprite.alive = False
             if collision_ground:
-                window.blit(game_over_img, (
-                    win_width // 2 - game_over_img.get_width() // 2,
-                    win_height // 2 - game_over_img.get_height() // 2
-                    ))
+                # window.blit(game_over_img, (
+                #     win_width // 2 - game_over_img.get_width() // 2,
+                #     win_height // 2 - game_over_img.get_height() // 2
+                #     ))
                 if user_input[pygame.K_r]:
                     score = 0
                     break
@@ -184,6 +184,13 @@ def main():
         # show score
         score_text = font.render("Score: " + str(score), True, pygame.Color(255, 255, 255))
         window.blit(score_text, (20, 20))
+        
+        # game over
+        if not bird.sprite.alive and collision_ground:
+            window.blit(game_over_img, (
+                win_width // 2 - game_over_img.get_width() // 2,
+                win_height // 2 - game_over_img.get_height() // 2
+            ))
         
         # update ground, pipes, and bird
         if bird.sprite.alive:
